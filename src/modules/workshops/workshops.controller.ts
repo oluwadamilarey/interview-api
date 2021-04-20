@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, NotFoundException, Request } from '@nestjs/common';
 import { Workshop as workshopEntity } from './workshop.entity';
 import { WorkshopDto } from './dto/workshop.dto';
 import { WORKSHOP_REPOSITORY } from '../../core/constants';
@@ -24,4 +24,30 @@ export class WorkshopsController {
         return workshop;
     }
 
+    @Delete(':id')
+    async remove(@Param('id') id: number, @Request() req) {
+        const deleted = await this.workshopsService.delete(id, req.user.id);
+        if (deleted === 0) {
+            throw new NotFoundException('This workshop doesn\'t exist');
+        }
+        return 'Successfully deleted';
+    }
+    
+    @Post()
+    async create(@Body() workshop: WorkshopDto, @Request() req): Promise<workshopEntity> {
+        return await this.workshopsService.create(workshop);
+    }
+
+    @Put(':id')
+    async update(@Param('id') id: number, @Body() workshop: WorkshopDto, @Request() req): Promise<workshopEntity> {
+        const { updatedWorkshop, numberOfAffectedRows } = await this.workshopsService.update(id, workshop);
+
+        
+        if (numberOfAffectedRows === 0) {
+            throw new NotFoundException('This workshop doesn\'t exist');
+        }
+
+        
+        return updatedWorkshop;
+    }
 }
