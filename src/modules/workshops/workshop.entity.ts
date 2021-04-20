@@ -1,7 +1,14 @@
 import { Table, Column, Model, DataType } from 'sequelize-typescript';
 
 @Table
-export class Workshop extends Model<Workshop> {
+export class Workshop extends Model {
+    @Column({
+        type: DataType.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
+    })
+    id: number;
+
     @Column({
         type: DataType.STRING,
         allowNull: false,
@@ -9,11 +16,11 @@ export class Workshop extends Model<Workshop> {
     name: string;
 
     @Column({
-        type: DataType.STRING,
+        type: DataType.INTEGER,
         unique: true,
         allowNull: false,
     })
-    field: string;
+    field: number;
 
     @Column({
         type: DataType.STRING,

@@ -1,4 +1,5 @@
 import { Sequelize } from 'sequelize-typescript';
+import { Workshop } from 'src/modules/workshops/workshop.entity';
 import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from '../constants';
 import { databaseConfig } from './database.config';
 
@@ -20,7 +21,7 @@ export const databaseProviders = [{
            config = databaseConfig.development;
         }
         const sequelize = new Sequelize(config);
-        sequelize.addModels(['models goes here']);
+        sequelize.addModels([Workshop]);
         await sequelize.sync();
         return sequelize;
     },
