@@ -19,7 +19,7 @@ export class Workshop extends Model<Workshop> {
         type: DataType.STRING,
         allowNull: false,
     })
-    password: string;
+    tutor: string;
 
     @Column({
         type: DataType.ENUM,
