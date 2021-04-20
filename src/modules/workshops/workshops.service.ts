@@ -9,6 +9,7 @@ export class WorkshopsService {
     constructor(@Inject(WORKSHOP_REPOSITORY) private readonly workshopRepository: typeof Workshop) { }
 
     async create(workshop: WorkshopDto): Promise<Workshop> {
+        console.log(workshop)
         return await this.workshopRepository.create<Workshop>(workshop);
     }
 

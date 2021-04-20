@@ -12,33 +12,37 @@ export class Workshop extends Model {
 
     @Column({
         type: DataType.STRING,
-        allowNull: false,
+        allowNull: true,
+        unique: false
     })
     name: string;
 
     @Column({
         type: DataType.INTEGER,
-        unique: true,
-        allowNull: false,
+        allowNull: true,
+        unique: false
     })
     field: number;
 
     @Column({
-        type: DataType.STRING,
-        allowNull: false,
+        type: DataType.INTEGER,
+        allowNull: true,
+        unique: false
     })
-    tutor: string;
+    tutor: number;
 
     @Column({
         type: DataType.ENUM,
         values: ['monday', 'tuesday','wednesday', 'thursday', 'friday'],
         allowNull: true,
+        unique: false
     })
     workshopdate: string;
 
     @Column({
         type: DataType.STRING,
-        allowNull: false,
+        allowNull: true,
+        unique: false
     })
-    curriculum: [string];
+    curriculum: string;
 }

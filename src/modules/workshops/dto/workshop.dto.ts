@@ -2,7 +2,7 @@ export class WorkshopDto {
     readonly id: number;
     readonly name: string;
     readonly field: number;
-    readonly tutor: string;
+    readonly tutor: number;
     readonly workshopdate: string;
-    readonly curriculum: [string];
+    readonly curriculum: string;
 }
