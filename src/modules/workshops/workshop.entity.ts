@@ -6,6 +6,7 @@ export class Workshop extends Model {
         type: DataType.INTEGER,
         allowNull: false,
         autoIncrement: true,
+        primaryKey: true,
     })
     id: number;
 

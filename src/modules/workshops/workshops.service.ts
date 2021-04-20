@@ -16,8 +16,8 @@ export class WorkshopsService {
         return await this.workshopRepository.findOne<Workshop>({ where: { field } });
     }
 
-    async findOneByTutor(tutor: number): Promise<Workshop> {
-        return await this.workshopRepository.findOne<Workshop>({ where: { tutor } });
+    async findById(id: number): Promise<Workshop> {
+        return await this.workshopRepository.findOne<Workshop>({ where: { id } });
     }
 
     async findAll(): Promise<Workshop[]> {

@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Put, Delete, Param, Body, NotFoundException } from '@nestjs/common';
-import { Workshop } from './workshop.entity';
+import { Workshop as workshopEntity } from './workshop.entity';
 import { WorkshopDto } from './dto/workshop.dto';
 import { WORKSHOP_REPOSITORY } from '../../core/constants';
 import { WorkshopsService } from './workshops.service'
@@ -11,6 +11,17 @@ export class WorkshopsController {
 
     @Get()
     async findAll(){
-        return await this.post
+        return await this.workshopsService.findAll();
     }
+
+    @Get(':id')
+    async findOne(@Param('id') id: number): Promise<workshopEntity> {
+       
+        const workshop = await this.workshopsService.findById(id);
+        if (!workshop) {
+            throw new NotFoundException('This Workshop doesn\'t exist');
+        }
+        return workshop;
+    }
+
 }
